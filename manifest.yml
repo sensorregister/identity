@@ -5,4 +5,8 @@ applications:
   memory: 512M
   services:
    - identity-db
+   #- config-server
+   #- disco
   path: target/identity.jar
+  #env:
+    #SPRING_PROFILES_ACTIVE: cloud
