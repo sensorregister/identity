@@ -1,11 +1,9 @@
 package nl.kadaster.sensor.identity;
 
+import java.util.Collection;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,29 +14,29 @@ import com.google.common.base.MoreObjects;
 public class Identity {
 
 	@Id
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@GeneratedValue(generator = "uuid2")
-	@Column(columnDefinition = "BINARY(16)")
-	private UUID id;
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private long id;
 
 	@NotEmpty
 	private String telephoneNumber;
-	private String[] codes;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private Collection<Code> codes;
 
 	Identity() {
 	}
 
-	public Identity(String telephoneNumber, String[] codes) {
+	public Identity(String telephoneNumber, Collection<Code> codes) {
 		super();
 		this.telephoneNumber = telephoneNumber;
 		this.codes = codes;
 	}
 
-	public UUID getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -50,11 +48,11 @@ public class Identity {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	public String[] getCodes() {
+	public Collection<Code> getCodes() {
 		return codes;
 	}
 
-	public void setCodes(String[] codes) {
+	public void setCodes(Collection<Code> codes) {
 		this.codes = codes;
 	}
 

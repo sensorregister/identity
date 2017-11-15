@@ -7,3 +7,7 @@ spring:
 security:
   basic:
     enabled: false
+
+---
+spring:
+  profiles: dev
