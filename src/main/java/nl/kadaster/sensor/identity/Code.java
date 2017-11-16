@@ -1,30 +1,45 @@
 package nl.kadaster.sensor.identity;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import javax.persistence.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Code {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    @Column
-    private long identityId;
+	@Column
+	private long identityId;
 
-    @NotEmpty
-    @Column(unique = true)
-    private String value;
+	@NotEmpty
+	@Column(unique = true)
+	private String value;
 
-    Code() { }
+	private Status status = Status.INITIALIZED;
 
-    public Code(String value) {
-        this.value = value;
-    }
+	Code() {
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public Code(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 }
