@@ -1,4 +1,4 @@
-package nl.kadaster.sensor.identity;
+package nl.kadaster.sensor.register;
 
 public enum Status {
 

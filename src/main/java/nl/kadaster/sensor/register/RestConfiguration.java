@@ -1,4 +1,4 @@
-package nl.kadaster.sensor.identity;
+package nl.kadaster.sensor.register;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;

@@ -1,6 +1,6 @@
-### Identity ###
+### Register ###
 
-This module exposes a REST-interface for the Identity database.
+This module exposes a REST-interface for the Register database.
 
 Dev
 ===

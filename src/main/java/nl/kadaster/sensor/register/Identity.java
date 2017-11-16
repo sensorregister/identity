@@ -1,11 +1,9 @@
-package nl.kadaster.sensor.identity;
+package nl.kadaster.sensor.register;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.google.common.base.MoreObjects;

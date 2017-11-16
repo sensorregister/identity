@@ -2,7 +2,7 @@
 
 spring:
    application:
-      name: identity
+      name: register
 
 security:
   basic:

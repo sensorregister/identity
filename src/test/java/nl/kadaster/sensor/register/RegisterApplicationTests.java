@@ -1,4 +1,4 @@
-package nl.kadaster.sensor.identity;
+package nl.kadaster.sensor.register;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class IdentityApplicationTests {
+public class RegisterApplicationTests {
 
 	@Test
 	public void contextLoads() {
