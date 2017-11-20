@@ -18,9 +18,6 @@ public class Code {
 	private long id;
 
 	@Column
-	private long identityId;
-
-	@Column
 	private long sensorId;
 
 	@NotEmpty
