@@ -9,7 +9,7 @@ public class RestConfiguration extends RepositoryRestConfigurerAdapter {
 
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		config.exposeIdsFor(Identity.class);
+		config.exposeIdsFor(Identity.class, Code.class, Sensor.class);
 	}
 
 }

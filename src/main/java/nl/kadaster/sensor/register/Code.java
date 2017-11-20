@@ -1,6 +1,12 @@
 package nl.kadaster.sensor.register;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -14,11 +20,14 @@ public class Code {
 	@Column
 	private long identityId;
 
+	@Column
+	private long sensorId;
+
 	@NotEmpty
 	@Column(unique = true)
 	private String value;
 
-    @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Status status = Status.INITIALIZED;
 
 	Code() {
