@@ -5,9 +5,9 @@ applications:
   memory: 1G
   services:
    - register-db
-   - config-server
-   - disco
   path: target/register.jar
   env:
     TRUST_CERTS: eureka-179c229f-67b6-4280-8cdf-c028e34219c7.apps.kadaster.examples.cf
     SPRING_PROFILES_ACTIVE: cloud
+  routes:
+     - route: register.apps.cf.kadaster.nl
