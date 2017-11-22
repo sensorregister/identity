@@ -1,5 +1,7 @@
 package nl.kadaster.sensor.register;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,8 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Code {
@@ -17,8 +20,9 @@ public class Code {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column
-	private long sensorId;
+	@OneToOne
+    @JoinColumn(name = "sensorId")
+	private Sensor sensor;
 
 	@NotEmpty
 	@Column(unique = true)
@@ -26,6 +30,9 @@ public class Code {
 
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.INITIALIZED;
+
+	@ManyToOne
+	private Identity identity;
 
 	Code() {
 	}
@@ -45,4 +52,16 @@ public class Code {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+    public Identity getIdentity() {
+        return identity;
+    }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public long getId() {
+        return id;
+    }
 }
