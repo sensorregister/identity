@@ -7,9 +7,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "codes", path = "codes")
 public interface CodeRepository extends PagingAndSortingRepository<Code, Long> {
 
-	StatusOnly findOneByValue(@Param("value") String value);
-
-	public static interface StatusOnly {
-		Status getStatus();
-	}
+	Code findOneByValue(@Param("value") String value);
 }

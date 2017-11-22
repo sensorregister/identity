@@ -18,7 +18,7 @@ public class Sensor {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "sensor")
 	private Code code;
 
 	@NotEmpty
