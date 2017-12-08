@@ -1,6 +1,7 @@
-package nl.kadaster.sensor.register;
+package nl.kadaster.sensor.register.entity;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.google.common.base.MoreObjects;
 
+import nl.kadaster.sensor.register.model.CodeRegistration;
+
 @Entity
 public class Identity {
 
@@ -23,16 +26,10 @@ public class Identity {
 	@NotEmpty
 	private String telephoneNumber;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private Collection<Code> codes;
+	@OneToMany(mappedBy = "identity", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Code> codes = new HashSet<>();
 
 	Identity() {
-	}
-
-	public Identity(String telephoneNumber, Collection<Code> codes) {
-		super();
-		this.telephoneNumber = telephoneNumber;
-		this.codes = codes;
 	}
 
 	public long getId() {
@@ -51,12 +48,20 @@ public class Identity {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	public Collection<Code> getCodes() {
+	public Set<Code> getCodes() {
 		return codes;
 	}
 
-	public void setCodes(Collection<Code> codes) {
+	public void setCodes(Set<Code> codes) {
 		this.codes = codes;
+	}
+
+	public static Identity from(CodeRegistration codeRegistration) {
+		Identity identity = new Identity();
+		identity.setTelephoneNumber(codeRegistration.getTelephoneNumber());
+		codeRegistration.getCodes().stream().forEach(s -> identity.getCodes().add(new Code(s, identity)));
+		return identity;
+
 	}
 
 	@Override
@@ -64,7 +69,7 @@ public class Identity {
 		return MoreObjects.toStringHelper(this)
 				.add("id", id)
 				.add("telephoneNumber", telephoneNumber)
-				.add("codes", codes)
+				.add("codes", codes.stream().map(c -> c.getValue()))
 				.toString();
 	}
 }
